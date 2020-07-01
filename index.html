@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-color:black
+        }
+
+        #app{
+            color: whitesmoke;
+            width : 20%;
+            border: 1 solid blue;
+            margin: 0 auto;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            padding : 5px;
+        }
+        .grid-item{
+            border: 1px solid whitesmoke;
+            padding :20px;
+            text-align:center;
+            margin : 2px;
+        }
+        .answer{
+            border: 1px solid whitesmoke;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .delete-button{
+            background-color: tomato;
+            color: whitesmoke;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .delete-button:active{
+            border-style: none;
+        }
+    </style>
+    <title>Vue Calculator</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{header}}</h1>
+        <div class="answer"> 
+            <button class="delete-button" @click="deleteA(answer)">{{deleteAnswer}}</button> |
+            {{answer}}
+        </div>
+        <div class="container">
+            <button class="grid-item" v-for="number in numbers" @click="newAnswer(number.digitNumber)"
+            :key="number.digitKey">
+                 {{number.digitNumber}} 
+            </button>
+            <button class="grid-item" v-for="operator in operators" @click="pickOperator(operator.operatorSymbol)" :key="operator.operatorKey">
+                {{ operator.operatorSymbol }}
+            </button>
+            <button class="grid-item" @click="">
+                {{ equalAnswer }}
+            </button>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="main.js"></script>
+</body>
+</html>
