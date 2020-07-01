@@ -1,7 +1,7 @@
 let app = new Vue({
     el: "#app",
     data:{
-        header: 'The is my Vue Calculator',
+        header: 'VUE CALCULATOR',
         answer : '',
         deleteAnswer: 'DELETE',
         numbers : [{
