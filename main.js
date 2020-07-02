@@ -89,5 +89,3 @@ let app = new Vue({
         
     }
 });
-
-// If I click submit, I have to submit the information
