@@ -80,8 +80,11 @@ let app = new Vue({
                 }
         },
         deleteA(){
-            this.answer = this.answer.replace(/[0-9+*/=-]$/gm,'');
+            this.answer = String(this.answer).replace(/[0-9+*/=-]$/gm,'');
             this.secondNumbers.pop()
+        },
+        solutionToCalculation(operationInputed){
+            this.answer =eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1)
         }
         
     }

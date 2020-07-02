@@ -42,10 +42,12 @@
             padding: 10px;
             border: none;
             border-radius: 10px;
+            outline:none;
         }
 
-        .delete-button:active{
-            border-style: none;
+        button{
+            outline: none;
+            cursor: pointer;
         }
     </style>
     <title>Vue Calculator</title>
@@ -54,7 +56,7 @@
     <div id="app">
         <h1>{{header}}</h1>
         <div class="answer"> 
-            <button class="delete-button" @click="deleteA(answer)">{{deleteAnswer}}</button> |
+            <button class="delete-button" @click="deleteA(answer)">{{deleteAnswer}}</button>
             {{answer}}
         </div>
         <div class="container">
@@ -65,7 +67,7 @@
             <button class="grid-item" v-for="operator in operators" @click="pickOperator(operator.operatorSymbol)" :key="operator.operatorKey">
                 {{ operator.operatorSymbol }}
             </button>
-            <button class="grid-item" @click="">
+            <button class="grid-item" @click="solutionToCalculation(pickedOperator)">
                 {{ equalAnswer }}
             </button>
         </div>
