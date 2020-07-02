@@ -1,3 +1,5 @@
 ## This is the project's README file
 
-### replace me with important information
+---
+### VUE CALCULATOR. CHECK ME OUT!
+---
