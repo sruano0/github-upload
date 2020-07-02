@@ -59,33 +59,27 @@ let app = new Vue({
     },
     methods : {
         newAnswer(x){
-            
-                    if(!this.answer.match(/[+*/=-]/gm)){
-                        this.answer = this.answer + x * 1 ;
-                        return this.firstNumbers = Number(this.answer)
-                    }else{
-                        console.log('boom');
-                        this.answer = this.answer + x * 1;
-                        this.secondNumbers.push(x)
-                    }
-            
+            if(!this.answer.match(/[+*/=-]/gm)){
+                this.answer = this.answer + x * 1 ;
+                this.firstNumbers = Number(this.answer)
+            }else{
+                console.log('boom');
+                this.answer = this.answer + x * 1;
+                this.secondNumbers.push(x)
+            }
         },
         pickOperator(x){
-                if(!this.answer.match(/[+*/=-]$/gm)){
-                    this.answer = this.answer + x;
-                    this.pickedOperator = x;
-                }else{
-                    this.answer = this.answer.replace(/[+*/=-]$/gm,x);
-                    this.pickedOperator = x;
-                }
+            if(!this.answer.match(/[+*/=-]$/gm))this.answer = this.answer + x;this.pickedOperator = x;
+                this.answer = this.answer.replace(/[+*/=-]$/gm,x);
+                this.pickedOperator = x;
         },
         deleteA(){
-            this.answer = String(this.answer).replace(/[0-9+*/=-]$/gm,'');
+            this.answer = String(this.answer).replace(/[0-9.+,*/=-]$/gm,'');
             this.secondNumbers.pop()
         },
         solutionToCalculation(operationInputed){
-            this.answer =eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1)
+            this.answer =eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1).toLocaleString()
+            
         }
-        
     }
 });
