@@ -69,17 +69,19 @@ let app = new Vue({
             }
         },
         pickOperator(x){
-            if(!this.answer.match(/[+*/=-]$/gm))this.answer = this.answer + x;this.pickedOperator = x;
-                this.answer = this.answer.replace(/[+*/=-]$/gm,x);
-                this.pickedOperator = x;
+            if(!this.answer.match(/[+*/=-]/))this.answer = this.answer + x;this.pickedOperator = x;
+              this.answer = this.answer.replace(/[+*/=-]$/gm,x);
+              this.pickedOperator = x;
         },
         deleteA(){
             this.answer = String(this.answer).replace(/[0-9.+,*/=-]$/gm,'');
-            this.secondNumbers.pop()
+            this.secondNumbers.pop();
         },
         solutionToCalculation(operationInputed){
-            this.answer =eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1).toLocaleString()
-            
+            this.answer = eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1).toLocaleString();
+            //I am updating the below code.
+            this.firstNumbers = this.answer;
+            this.secondNumbers = [];
         }
     }
 });
