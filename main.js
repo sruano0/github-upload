@@ -3,7 +3,7 @@ let app = new Vue({
     data:{
         header: 'VUE CALCULATOR',
         answer : '',
-        deleteAnswer: 'DELETE',
+        deleteAnswer: 'CLEAR',
         numbers : [{
             digitKey : 1,
             digitNumber: '1'
@@ -61,7 +61,7 @@ let app = new Vue({
         newAnswer(x){
             if(!this.answer.match(/[+*/=-]/gm)){
                 this.answer = this.answer + x * 1 ;
-                this.firstNumbers = Number(this.answer)
+                this.firstNumbers = String(this.answer).replace(/[,]/g,'')
             }else{
                 console.log('boom');
                 this.answer = this.answer + x * 1;
@@ -69,18 +69,28 @@ let app = new Vue({
             }
         },
         pickOperator(x){
-            if(!this.answer.match(/[+*/=-]/))this.answer = this.answer + x;this.pickedOperator = x;
-              this.answer = this.answer.replace(/[+*/=-]$/gm,x);
-              this.pickedOperator = x;
+            
+                if(!this.answer.match(/[+*/=-]/)){
+                    this.answer = this.answer + x;
+                    this.pickedOperator = x;
+                }else if (this.answer.match(/[+*/=-]$/)) {
+                    this.answer = this.answer.replace(/[+*/=-]$/gm,x);
+                    this.pickedOperator = x;
+                    console.log('changed operator to new operator')
+                } else {
+                    console.log('operator will not change')
+                }
+            
         },
         deleteA(){
-            this.answer = String(this.answer).replace(/[0-9.+,*/=-]$/gm,'');
+            this.answer = String(this.answer).replace(/[0-9.+,*/=-]/gm,'');
+            this.firstNumbers = this.answer;
             this.secondNumbers.pop();
         },
         solutionToCalculation(operationInputed){
+           
             this.answer = eval(Number(this.firstNumbers) +operationInputed+ Number(this.secondNumbers.join('')) *1).toLocaleString();
-            //I am updating the below code.
-            this.firstNumbers = this.answer;
+            this.firstNumbers = String(this.answer).replace(/[,]/g,'');
             this.secondNumbers = [];
         }
     }
